@@ -1,1 +1,0 @@
-# superkassa-backend-test
