@@ -1,6 +1,5 @@
 ## superkassa-backend-test
 Тестовое задание для SUPERKASSA
-https://team.superkassa.ru/serverside-developer-test
 
 ## Технологии
 Spring Boot, Gradle, Postgres

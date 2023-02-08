@@ -21,7 +21,6 @@ public class ExampleController {
     }
 
     @PostMapping("/modify")
-    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public ExampleResponseDTO modify(@RequestBody ExampleRequestDTO exampleRequestDTO) {
         return exampleService.modify(exampleRequestDTO);
     }
