@@ -1,8 +1,13 @@
 ## superkassa-backend-test
 Тестовое задание для SUPERKASSA
+https://team.superkassa.ru/serverside-developer-test
 
 ## Технологии
 Spring Boot, Gradle, Postgres
+
+## Запуск приложения 
+    docker-compose build
+    docker-compose up
 
 ## Предварительные условия:
 Предзаполненная таблица в базе данных postgres. 
