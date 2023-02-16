@@ -10,10 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @Slf4j
 public class ExampleService {
+
+    private final AtomicInteger number = new AtomicInteger();
 
     private final ExampleRepository exampleRepository;
 
@@ -25,9 +28,11 @@ public class ExampleService {
     @Transactional
     public ExampleResponseDTO modify(ExampleRequestDTO exampleRequestDTO) {
         log.info("Request body with id {} and add value {}", exampleRequestDTO.getId(), exampleRequestDTO.getAdd());
+
         Example example = exampleRepository.findById(exampleRequestDTO.getId())
                 .orElseThrow(() -> new ExampleNotFoundException("Unable to find example by id:" + exampleRequestDTO.getId()));
-        MyJson myJson = new MyJson(example.getObj().getCurrent() + exampleRequestDTO.getAdd());
+        number.set(example.getObj().getCurrent());
+        MyJson myJson = new MyJson(number.addAndGet(exampleRequestDTO.getAdd()));
         example.setObj(myJson);
         exampleRepository.save(example);
         return new ExampleResponseDTO(myJson.getCurrent());
